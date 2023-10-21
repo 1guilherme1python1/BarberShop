@@ -1,7 +1,9 @@
 package com.rhinno.barber.adapter
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.rhinno.barber.databinding.ServicosItemBinding
@@ -20,7 +22,12 @@ class ServicosAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): servicosViewHolder {
-        val itemLista = ServicosItemBinding.inflate()
+        val itemLista = ServicosItemBinding.inflate(
+            LayoutInflater.from(context),
+            parent,
+            false)
+
+        return servicosViewHolder(itemLista)
     }
 
     override fun getItemCount(): Int {
@@ -28,6 +35,10 @@ class ServicosAdapter(
     }
 
     override fun onBindViewHolder(holder: servicosViewHolder, position: Int) {
-        TODO("Not yet implemented")
+
+        val servico = listaService[position];
+
+        holder.imgServico.setImageResource(servico.img!!)
+        holder.textServico.text = servico.nome
     }
 }
